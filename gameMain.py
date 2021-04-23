@@ -1,4 +1,5 @@
 from graphics import *
+import random
 
 win = GraphWin("FasterGame", 550, 500)
 win.setBackground("RoyalBlue")
@@ -12,8 +13,8 @@ def intro():
     t.draw(win)
     win.getMouse()
     t.setText('''
-    In this game your fastest self WILL be revield. Your mission
-    is to select as quickly as possible the correct colored square
+    In this game your fastest self WILL be revield. In the first
+    puzzle, your mission   is to select as quickly as possible the correct colored square
     which will be spesified in the superior part of the window. You
     can time your self and challenge your reflexes.
 
@@ -90,7 +91,7 @@ def puzzle_1():
     p1 = Point(490,450)
     p2 = Point(510, 470)
     a = Rectangle(p1, p2)
-    a.setFill("red") 
+    a.setFill("green") 
     a.draw(win)
     x1 = a.getP1().getX()
     y1 = a.getP1().getY()
@@ -98,55 +99,170 @@ def puzzle_1():
     y2 = a.getP2().getY()
     p = win.getMouse()   
 
-    while x1 <= p.getX() <= x2 and y1 <= p.getY() <= y2:
-        print('YESYESYES')
-        p = win.getMouse()
-
-    c_cor = c.getCenter()   
-    
+    if x1 <= p.getX() <= x2 and y1 <= p.getY() <= y2:
+        c_cor = c.getCenter()    
         l = Line(c_cor, p)
         l.setOutline("red")
         l.setArrow("first")
-        l.draw(win)        
-    
-    #text(345, 450, 10, "Your goal is here =>", "red")
+        l.draw(win)
 
-    
-
-    win.getMouse()
-    squares(0, 0, 550, 500, "gray")
-    t2 = Text(Point(275,200), '''
-        IF you clicked the inferior circle you are CORRECT.
-        In the instructions we never mentioned that you had the task
-        to actually solve the maze. Your mission was simply to get
-        from your spawn point to the goal point (inferior red circle)
-        with just one click.
-        enter key one of the following keys:
-
-        'a' to go back and do the maze puzzle again.
-        'b' to continue with next puzzles.''')
-    t2.setTextColor("red")
-    t2.setSize(13)
-    t2.draw(win)
-
-    win.getMouse()
-    
-    
         
+        squares(0, 0, 275, 500, "green")
+        t2 = Text(Point(130,200), '''
+        GREAT JOB, you are correct!
+        In the instructions we never
+        mentioned that you had the task
+        to actually solve the maze.
+        Your mission was simply to get
+        from your spawn point(red circle) 
+        to the goal point (green square)
+        with just one click.
+        
+        Click anywhere to go 
+        to the next puzzle! ''')
+        t2.setTextColor("black")
+        t2.setSize(13)
+        t2.draw(win)
+        
+     
+    else:
+
+        
+        t = Text(Point(275,200), '''
+        WRONG! You have one more chance.
+        Click anywhere to try again''')
+        t.setTextColor("red")
+        t.setSize(13)
+        t.draw(win)
+
+        win.getMouse()
+        t.undraw()
+        puzzle_1()    
+    
+  
+def puzzle_2():
+
+    squares(0, 0, 550, 500, "gray")
+    t = Text(Point(275,200), '''
+    Welcome to puzzle #2, called:
+    "Where are the squares?
+    
+    Click anywhere to get started."
+     ''')
+    t.setTextColor("black")
+    t.setSize(13)
+    t.draw(win)
+
+    win.getMouse()
+    t.undraw()
+
+    squares(50, 20, 500, 100, "purple")
+    t = Text(Point(275, 60), '''
+    There are three mini houses: one is red, one is blue, one is white.
+    If the red house is to the left of the house in the middle and 
+    the blue house is to the right to the house in the middle.
+    Where is The White House located? (select you best guess)
+     ''')
+    t.setTextColor("white")
+    t.setSize(9)
+    t.draw(win)
+
+    squares(25, 200, 125, 300, "grey33")
+    t = Text(Point(75, 250), 'Left')
+    t.setTextColor("white")
+    t.setSize(11)
+    t.draw(win)
+
+    squares(225, 200, 325, 300, "grey33")
+    t = Text(Point(275, 250), 'Middle')
+    t.setTextColor("white")
+    t.setSize(11)
+    t.draw(win)
+
+    squares(425, 200, 525, 300, "grey33")
+    t = Text(Point(475, 250), 'Right')
+    t.setTextColor("white")
+    t.setSize(11)
+    t.draw(win)
+
+    t = Text(Point(125, 400), 'NONE of the above =>')
+    t.setTextColor("white")
+    t.setSize(11)
+    t.draw(win)
+
+    p1 = Point(225, 350)
+    p2 = Point(325, 450)
+    a = Rectangle(p1, p2)
+    a.setFill("grey33") 
+    a.setOutline("white")
+    a.draw(win)
+    x1 = a.getP1().getX()
+    y1 = a.getP1().getY()
+    x2 = a.getP2().getX()
+    y2 = a.getP2().getY()
+    p = win.getMouse()   
+
     
 
+    if x1 <= p.getX() <= x2 and y1 <= p.getY() <= y2:
+                
+        squares(0, 0, 275, 500, "green")
+        t2 = Text(Point(130,200), '''
+        You are correct! The right answer was:
+        "NONE of the above"
+        
+        Did you get it in
+        your first try?
+
+        If you are still confused, let me
+        explain it to you.
+        As the instructions said,
+        you had to select where The White House
+        is located.
+
+        The White House of the United states is
+        located in Central Washington, D.C.
+        Don't let the riddle distract you
+        from the REAL question.
+        
+        Click anywhere to go 
+        to the next puzzle! ''')
+        t2.setTextColor("black")
+        t2.setSize(10)
+        t2.draw(win)
+        
+     
+    else:
+        t = Text(Point(275,200), '''
+                  WRONG!
+        Click anywhere to try again''')
+        t.setTextColor("red")
+        t.setSize(13)
+        t.draw(win)
+
+        win.getMouse()
+        t.undraw()
+        puzzle_2()
 
 
+
+  
 def main():
 
     intro()
     win.getMouse()    
-    puzzle_1()
-    
+    puzzle_1()         
+
+    win.getMouse()
+    puzzle_2()
+
+    win.getMouse()
+    squares(0, 0, 550, 500, "yellow")
+
     
 
         
-    #win.setBackground("gray")
+    
                 
                
     win.getMouse()
