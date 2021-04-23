@@ -1,24 +1,23 @@
 from graphics import *
 import random
 
-win = GraphWin("FasterGame", 550, 500)
+win = GraphWin("PuzzleGame", 550, 500)
 win.setBackground("RoyalBlue")
 
 def intro():
 
-    t = Text(Point(275, 200), "FasterGame!")
+    t = Text(Point(275, 200), "PuzzleGame!")
     t.setFace("arial")
     t.setSize(20)
     t.setStyle("bold")
     t.draw(win)
     win.getMouse()
     t.setText('''
-    In this game your fastest self WILL be revield. In the first
-    puzzle, your mission   is to select as quickly as possible the correct colored square
-    which will be spesified in the superior part of the window. You
-    can time your self and challenge your reflexes.
+    In this game your will witness a series of puzzles. In the first
+    puzzle, your mission is to go through a maze. With just one click
+    get from you spawn point to the goal point.
 
-    Click anywhere two times to start the game. GOOD LUCK! 
+    Click anywhere start the first puzzle game. GOOD LUCK! 
     ''')
     t.setSize(13)
     win.getMouse()
@@ -81,15 +80,15 @@ def puzzle_1():
     t.setTextColor("red")
     t.draw(win)
 
-    t1 = Text(Point(345,450), "Your goal is here =>")
-    t1.setTextColor("red")
+    t1 = Text(Point(350,450), "Your goal is here =>")
+    t1.setTextColor("green")
     t1.setSize(10)
     t1.draw(win)
     
 
     #Inferior area circle:
-    p1 = Point(490,450)
-    p2 = Point(510, 470)
+    p1 = Point(415, 438)
+    p2 = Point(450, 473)
     a = Rectangle(p1, p2)
     a.setFill("green") 
     a.draw(win)
@@ -127,9 +126,14 @@ def puzzle_1():
      
     else:
 
-        
+        r = Rectangle(Point(150, 175), Point(440, 250)) 
+        r.setFill("gray") 
+        r.setWidth(1)
+        r.setOutline("white")
+        r.draw(win)
+
         t = Text(Point(275,200), '''
-        WRONG! You have one more chance.
+        WRONG!
         Click anywhere to try again''')
         t.setTextColor("red")
         t.setSize(13)
@@ -137,6 +141,7 @@ def puzzle_1():
 
         win.getMouse()
         t.undraw()
+        r.undraw()
         puzzle_1()    
     
   
@@ -233,8 +238,13 @@ def puzzle_2():
         
      
     else:
-        t = Text(Point(275,200), '''
-                  WRONG!
+        r = Rectangle(Point(150, 175), Point(440, 250)) 
+        r.setFill("black") 
+        r.setWidth(1)
+        r.setOutline("white")
+        r.draw(win)
+
+        t = Text(Point(275,200), '''WRONG!
         Click anywhere to try again''')
         t.setTextColor("red")
         t.setSize(13)
@@ -242,27 +252,24 @@ def puzzle_2():
 
         win.getMouse()
         t.undraw()
+        r.undraw()
         puzzle_2()
 
+def puzzle_3():
 
-
+    squares(0, 0, 550, 500, "yellow")
+    
   
 def main():
 
-    intro()
-    win.getMouse()    
-    puzzle_1()         
+    intro()       
+    puzzle_1()
 
     win.getMouse()
     puzzle_2()
 
     win.getMouse()
-    squares(0, 0, 550, 500, "yellow")
-
-    
-
-        
-    
+    puzzle_3()
                 
                
     win.getMouse()
