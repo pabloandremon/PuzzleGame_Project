@@ -255,9 +255,16 @@ def puzzle_2():
         r.undraw()
         puzzle_2()
 
-def puzzle_3():
+def End():
 
     squares(0, 0, 550, 500, "yellow")
+
+    t = Text(Point(275,200), '''THE END!
+    Thank you for playing!!!!.
+    Click anywhere to close the game.''')
+    t.setTextColor("black")
+    t.setSize(13)
+    t.draw(win)
     
   
 def main():
@@ -269,7 +276,7 @@ def main():
     puzzle_2()
 
     win.getMouse()
-    puzzle_3()
+    End()
                 
                
     win.getMouse()
