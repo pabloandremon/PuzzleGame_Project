@@ -1,5 +1,5 @@
 from graphics import *
-import random
+from button import Button
 
 win = GraphWin("PuzzleGame", 550, 500)
 win.setBackground("RoyalBlue")
@@ -85,20 +85,15 @@ def puzzle_1():
     t1.setSize(10)
     t1.draw(win)
     
+    #Button:
+    b = Button(win, Point(435, 445), 40, 40, 'goal')
+    b.activate()
+    p = win.getMouse()  
+    clickin = b.clicked(p)
+    
+     
 
-    #Inferior area circle:
-    p1 = Point(415, 438)
-    p2 = Point(450, 473)
-    a = Rectangle(p1, p2)
-    a.setFill("green") 
-    a.draw(win)
-    x1 = a.getP1().getX()
-    y1 = a.getP1().getY()
-    x2 = a.getP2().getX()
-    y2 = a.getP2().getY()
-    p = win.getMouse()   
-
-    if x1 <= p.getX() <= x2 and y1 <= p.getY() <= y2:
+    if clickin == True:
         c_cor = c.getCenter()    
         l = Line(c_cor, p)
         l.setOutline("red")
@@ -172,44 +167,31 @@ def puzzle_2():
     t.setSize(9)
     t.draw(win)
 
-    squares(25, 200, 125, 300, "grey33")
+    squares(25, 200, 125, 300, "white")
     t = Text(Point(75, 250), 'Left')
-    t.setTextColor("white")
+    t.setTextColor("black")
     t.setSize(11)
     t.draw(win)
 
-    squares(225, 200, 325, 300, "grey33")
+    squares(225, 200, 325, 300, "white")
     t = Text(Point(275, 250), 'Middle')
-    t.setTextColor("white")
+    t.setTextColor("black")
     t.setSize(11)
     t.draw(win)
 
-    squares(425, 200, 525, 300, "grey33")
+    squares(425, 200, 525, 300, "white")
     t = Text(Point(475, 250), 'Right')
-    t.setTextColor("white")
+    t.setTextColor("black")
     t.setSize(11)
     t.draw(win)
 
-    t = Text(Point(125, 400), 'NONE of the above =>')
-    t.setTextColor("white")
-    t.setSize(11)
-    t.draw(win)
-
-    p1 = Point(225, 350)
-    p2 = Point(325, 450)
-    a = Rectangle(p1, p2)
-    a.setFill("grey33") 
-    a.setOutline("white")
-    a.draw(win)
-    x1 = a.getP1().getX()
-    y1 = a.getP1().getY()
-    x2 = a.getP2().getX()
-    y2 = a.getP2().getY()
-    p = win.getMouse()   
-
-    
-
-    if x1 <= p.getX() <= x2 and y1 <= p.getY() <= y2:
+    #Button:
+    b2 = Button(win, Point(275, 400), 100, 100, 'NONE of\nthe above')
+    b2.activate()
+    p = win.getMouse()  
+    clickin2 = b2.clicked(p)
+   
+    if clickin2 == True:
                 
         squares(0, 0, 275, 500, "green")
         t2 = Text(Point(130,200), '''
